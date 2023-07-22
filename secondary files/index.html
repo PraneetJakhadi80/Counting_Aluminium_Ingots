@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Capture</title>
+</head>
+<body>
+    <h1>Image Capture</h1>
+    <button onclick="captureImage()">Capture Image</button>
+    <br>
+    <img id="preview" style="max-width: 300px;">
+    <script>
+        function captureImage() {
+            fetch('/output')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('preview').src = 'data:image/jpeg;base64,' + data.image_base64;
+                    alert(data.output_data);  // Optional: Show a message with the output data
+                });
+        }
+    </script>
+</body>
+</html>
